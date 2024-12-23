@@ -1,7 +1,8 @@
+import 'dotenv/config'
 import express from 'express'
 
 const app = express()
-const port = 3000
+const port =  process.env.PORT || 3000
 app.use(express.json())
 
 let teaData = []
@@ -51,7 +52,7 @@ app.delete('/teas/:id', (req, res) => {
     if (index === -1){
         return res.status(404).send('tea not found')
     }
-    
+
     teaData.splice(index, 1)
     res.status(204).send('tea deleted')
 })
@@ -60,16 +61,3 @@ app.delete('/teas/:id', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}...`)
 })
-
- 
-// app.get('/', (req, res) => {
-//     res.send('Hello World!')
-// })
-
-// app.get('/india', (req, res) => {
-//     res.send('Hello INDIA!')
-// })
-
-// app.get('/katni', (req, res) => {
-//     res.send('Hello Katni!')
-// })
